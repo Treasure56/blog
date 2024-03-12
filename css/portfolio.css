@@ -1,0 +1,82 @@
+/* Universal Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    /* list-style: none; */
+    border: none;
+    font-family: "Playfair Display", serif;
+}
+
+/* Body Styling */
+body {
+    padding: 0; /* Adjust this value based on your navbar height */
+}
+
+/* Google Fonts Import */
+@import url("https://fonts.googleapis.com/css2?family=Playfair+Display&display=swap");
+
+/* Navbar Styling */
+nav {
+    box-shadow: 0 1rem 3rem rgba(0, 0, 0, 0.175);
+}
+
+/* Social and Search Styling */
+.social .search:hover {
+    color: #3540dc;
+}
+
+
+
+#contact-section h1 {
+    font-size: 50px;
+    font-weight: bold;
+}
+
+/* Button Styling */
+form button {
+    box-shadow: 0 1rem 3rem rgba(0, 0, 0, 0.175);
+}
+
+/* Hero Section Styling */
+#hero-section {
+    padding-top: 70px;
+}
+
+.testimonial-card img{
+    aspect-ratio: 1/1;
+    width: 120px;
+}
+.testimonial-card .testimonial-content p span{
+color: #0D6EFD;
+}
+.testimonial-card .testimonial-content{
+    width: 60%;
+}
+.testimonial-container,
+.about-container{
+    padding-inline:  12vw !important;
+}
+.testimonial-card{
+    border-left: 3px solid #0D6EFD;
+    padding: 1em;
+}
+
+
+
+/* Media Query for Responsive Styling */
+@media (max-width: 991px) {
+    .sidebar {
+        background-color: rgba(255, 233, 255, 0.23);
+        backdrop-filter: blur(10px);
+    }
+
+    .contact {
+        flex-direction: column;
+        margin-left: 0 !important;
+    }
+
+    .contact-info {
+        margin-top: 20px;
+    }
+}
