@@ -1,7 +1,7 @@
-<?php require_once('includes/headertwo.php'); ?>
+<?php require_once('../includes/headertwo.php'); ?>
 
     <div>
-    <?php require_once('includes/nav.php'); ?>
+    <?php require_once('../includes/nav.php'); ?>
 
         <section id="hero-section">
             <div class="container testimonial-container">

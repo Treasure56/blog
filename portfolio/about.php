@@ -1,8 +1,8 @@
-<?php require_once('includes/headertwo.php'); ?>
+<?php require_once('../includes/headertwo.php'); ?>
 
 <body>
     <div>
-    <?php require_once('includes/nav2.php'); ?>
+    <?php require_once('../includes/nav2.php'); ?>
 
         <section>
             <div class=" container about-container pt-5 ">

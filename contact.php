@@ -85,7 +85,9 @@
                 </div>
               </div>
 
-              <form action="process-form.php" method="post">
+              <form action="includes/contactsub.php" method="post">
+                <?php require_once('includes/message.php');?>
+                <input type="hidden" name="next" value="contact.php">
                 <div class="form-group mb-3">
                   <label for="name">Name:</label>
                   <input
@@ -130,7 +132,7 @@
                   ></textarea>
                 </div>
 
-                <button type="submit" class="btn btn-danger">Send</button>
+                <button type="submit" name="submit" class="btn btn-danger">Send</button>
               </form>
             </div>
           </div>

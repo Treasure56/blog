@@ -118,7 +118,8 @@
       <section class="bg-light py-20 flex px-4 justify-center items-center">
         <div class="flex flex-col gap-5 max-w-[500px]">
           <h1 class="text-3xl font-bold text-left">New Portfolio</h1>
-          <form class="w-full flex flex-col gap-4">
+          <form class="w-full flex flex-col gap-4" method="POST" action="../includes/newportfoliosub.php" enctype="multipart/form-data">
+            <?php require_once("../includes/message.php");?>
             <div>
               <label for="email" class="block text-gray-700">Image</label>
               <input
@@ -129,24 +130,24 @@
               />
             </div>
             <div class="flex flex-col">
-                <label for="password" class="block text-gray-700">Name</label>
-                <input type="text" class="w-full w-full md:w-80 lg:w-96 px-3 py-2 border rounded-md " placeholder="name">
+                <label for="subtitle" class="block text-gray-700">Name</label>
+                <input type="text" name="subtitle" class="w-full w-full md:w-80 lg:w-96 px-3 py-2 border rounded-md " placeholder="name">
                 
               </div>
             <div  class="flex flex-col">
-              <label for="password" class="block text-gray-700 rounded">Title</label>
-              <textarea class="border" name="" id="" cols="50" rows="10" class="w-full w-full md:w-80 lg:w-96 px-3 py-2 border rounded-md">
+              <label for="title" class="block text-gray-700 rounded">Title</label>
+              <textarea class="border" name="title" id="" cols="50" rows="10" class="w-full w-full md:w-80 lg:w-96 px-3 py-2 border rounded-md">
 
               </textarea>
             </div>
             <div class="flex flex-col">
-                <label for="password" class="block text-gray-700">Url</label>
-                <input type="url" class="w-full w-full md:w-80 lg:w-96 px-3 py-2 border rounded-md " placeholder="url">
+                <label for="url" class="block text-gray-700">Url</label>
+                <input type="url" name="link" class="w-full w-full md:w-80 lg:w-96 px-3 py-2 border rounded-md " placeholder="url">
                 
               </div>
   
             <button
-              type="submit"
+              type="submit" name="submit"
               class="w-full md:w-80 lg:w-96 px-3 py-2 border rounded-md bg-red-400 text-white"
             >
               submit

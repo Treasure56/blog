@@ -39,6 +39,26 @@
   </head>
   <body>
     <main>
+
+    <?php 
+require_once('includes/connection.php');
+
+if(isset($_GET['id'])){
+    $pid = $_GET['id'];
+    $sql = "SELECT * FROM blog WHERE id = '$pid'";
+    $res = mysqli_query($connect, $sql);
+    $rows = mysqli_fetch_assoc($res);
+    $bid = $rows['id'];
+    $file = $rows['img'];
+    $title = $rows['title'];
+    $content = $rows['content'];
+  
+   
+  }else{
+    header('Location: blog.php');
+    return false;
+  }
+?>
       <div class="flex w-full">
         <div
           class="flex max-md:w-screen h-screen fixed top-0 left-[-110%] md:left-0 transition-md duration-300"
@@ -109,24 +129,56 @@
               </div>
               <div class="">
                 <h1 class="text-sm text-red-400">Admin</h1>
-                <p class="text-sm text-dark-text">Glory</p>
+                <h2 class="font-semibold text-sm">User Name</h2>
               </div>
             </div>
           </div>  
       </div>
 
       <section class="bg-light py-20 flex px-4 justify-center items-center">
-        <div class="flex flex-col gap-5 max-w-[800px]">
-          <h1 class="text-3xl font-bold text-left">Edit Blog</h1>
-          <div class="card border border-gray-200 p-5">
-           <div class="flex">
-         <div class="flex flex-col ">
-         <img src="includes/dp/65efa1c73f3162.06055768.png" alt="" width="200px" height="200px">
-            <p class="font-bold text-xl">title</p>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Asperiores tempore, voluptates voluptatibus quam enim distinctio aperiam ex quaerat assumenda aliquid maxime nobis et, officia, labore dolorem qui animi atque quis!</p>
-         </div>
-           </div>
-          </div>
+        <div class="flex flex-col w-full gap-5 max-w-[800px]">
+          <h1 class="text-3xl font-bold text-left">Edit blog</h1>
+          <form class="w-full flex flex-col gap-4 " method="POST" action="includes/editsub.php" enctype="multipart/form-data">
+            <?php require_once("includes/message.php");?>
+            <div class="w-full">
+              <label for="file" class="block text-gray-700">Image</label>
+              <input
+                type="file"
+                id="file"
+                name="file"
+                class="w-full  px-3 py-2 border rounded-md"
+              />
+            </div>
+            <div>
+              <label for="title" class="block text-gray-700">Title</label>
+              <input
+                type="text"
+                id="title"
+                name="title"
+                value="<?=$title?>"
+                class="w-full  px-3 py-2 border rounded-md"
+              />
+              <input
+                type="text"
+                hidden
+                name="id"
+                value="<?=$bid?>"
+                class="w-full  px-3 py-2 border rounded-md"
+              />
+            </div>
+            <div>
+              <label for="password" class="block text-gray-700">Description</label>
+              <textarea name="desc" id="" cols="50" rows="10" class="w-full block p-3 border"><?=$content?></textarea>
+            </div>
+  
+            <button
+              type="submit"
+              class="w-full  px-3 py-2 border rounded-md bg-red-400 text-white"
+            >
+              submit
+            </button>
+           
+          </form>
         </div>
       </section>
     </main>

@@ -19,16 +19,17 @@
             <p class="bold-text">GET PAID TO WRITE</p>
             <span class="text-center">Join 20,000+ writers who've taken my <mark class="bg-warning">insanely valuable
                 FREE course.</mark> Learn freelance writing from scratch & make money from your writing!</span>
-            <form>
+            <form action="includes/newslettersub.php" method="POST">
+              <?php require_once('includes/message.php');?>
               <div class="row mt-4">
                 <div class="col-md-6">
-                  <input type="text" class="form-control rounded" placeholder="First name">
+                  <input type="text" class="form-control rounded" placeholder="First name" name="name">
                 </div>
                 <div class="col-md-6">
-                  <input type="text" class="form-control rounded" placeholder="Email">
+                  <input type="text" class="form-control rounded" placeholder="Email" name="email">
                 </div>
               </div>
-              <button class="col-md-12 bg mt-3 bg-danger text-light">Sign me up !!</button>
+              <button class="col-md-12 bg mt-3 bg-danger text-light" name="submit">Sign me up !!</button>
               you are subsibing to this chanel
             </form>
 

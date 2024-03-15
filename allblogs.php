@@ -108,7 +108,7 @@
                 <i class="bi bi-person-fill"></i>
               </div>
               <div class="">
-                <h1 class="text-sm text-red-400">Verified</h1>
+                <h1 class="text-sm text-red-400">Admin</h1>
                 <h2 class="font-semibold text-sm">User Name</h2>
               </div>
             </div>
@@ -116,38 +116,52 @@
       </div>
 
       <section class="bg-light py-20 flex px-4 justify-center items-center">
-        <div class="flex flex-col gap-5 max-w-[500px]">
-          <h1 class="text-3xl font-bold text-left">New Testimonial</h1>
-          <form class="w-full flex flex-col gap-4">
-            <div>
-              <label for="email" class="block text-gray-700">Image</label>
-              <input
-                type="file"
-                id="file"
-                name="file"
-                class="w-full md:w-80 lg:w-96 px-3 py-2 border rounded-md"
-              />
-            </div>
-            <div  class="flex flex-col">
-              <label for="password" class="block text-gray-700 rounded">Description</label>
-              <textarea class="border" name="" id="" cols="50" rows="10" class="w-full w-full md:w-80 lg:w-96 px-3 py-2 border rounded-md">
+        <div class="flex flex-col w-full gap-5 max-w-[800px]">
+          <h1 class="text-3xl font-bold text-left">All Blogs</h1>
+          <div class="overflow-x-auto">
+  <table class="table-auto min-w-full divide-y divide-gray-200">
+    <thead class="bg-gray-50">
+      <tr>
+        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">image</th>
+        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Title</th>
+        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Text</th>
+        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Date</th>
+        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Actions</th>
+      </tr>
+    </thead>
+    <tbody class="bg-white divide-y divide-gray-200">
+  <?php
+        require_once('includes/connection.php');
+        $query = mysqli_query($connect, "SELECT * FROM blog");
+        while ($row = mysqli_fetch_assoc($query)) {
+          $title = $row["title"];
+          $content = $row["content"];
+          $img = $row["img"];
+          $id = $row["id"];
+          $createddate = $row["createddate"];
+          $date = new DateTime($createddate);
+          $formattedDate = $date->format('D, d M, Y');
+          $content = substr($content,0,30).'...';
+          
 
-              </textarea>
-            </div>
-            <div class="flex flex-col">
-                <label for="password" class="block text-gray-700">Name</label>
-                <input type="text" class="w-full w-full md:w-80 lg:w-96 px-3 py-2 border rounded-md " placeholder="name">
-                
-              </div>
-  
-            <button
-              type="submit"
-              class="w-full md:w-80 lg:w-96 px-3 py-2 border rounded-md bg-red-400 text-white"
-            >
-              submit
-            </button>
-           
-          </form>
+
+          ?>
+      <tr>
+        <td class="px-6 py-4 whitespace-nowrap"><img src=" includes/<?= $img ?> " height="60" width="60" class="size-10 object-cover" alt=""></td>
+        <td class="px-6 py-4 whitespace-nowrap">  <?= $title ?></td>
+        <td class="px-6 py-4 whitespace-nowrap"> <?= $content ?></td>
+        <td class="px-6 py-4 whitespace-nowrap"> <?= $formattedDate ?> </td>
+        <td class="px-6 py-4 whitespace-nowrap">
+          <a href="editblog.php?id=<?=$id?>" class="text-indigo-600 hover:text-indigo-900">Edit</a>
+          <a href="includes/delete.php?id=<?=$id?>" class="text-red-600 hover:text-red-900 ml-2">Delete</a>
+        </td>
+      </tr>
+        <?php } ?>
+    
+    </tbody>
+  </table>
+</div>
+
         </div>
       </section>
     </main>

@@ -1,3 +1,5 @@
+
+
 <?php require_once('includes/header.php'); ?>
 <body>
 
@@ -10,25 +12,38 @@
 
   <!-- blog section -->
 
-  <section id="blog-section">
-    <div class="container py-5">
-      <div class="col-md-12 ">
-        <h1 class="text-center mt-5">Latest Blog Posts</h1>
-        <img class="img-fluid" src="./img/Beige Modern Application Letter Guide Blog Banner (1).png" alt=""
-          height="10px" width="800px">
-      </div>
-    </div>
-
-    <div class=" text-center mt-5 hw">
-      <span>Dec 27, 2022 </span>
-      <h5 class=""><a href="" class="text-dark text-decoration-none fw-bold">How to Start a Blog for Your Business in 3
-          Easy Steps</a></h5>
-      <p class="fs-5">Interested in learning how to start a business? Did you know you can start a blog and <br> turn
-        that into a business? I’ve been blogging… </p>
-    </div>
-
-
+    <div class=" py-5">
+    <?php
+    if(!isset($_GET['blog'])) header('location: blog.php') ;
+    $_id = $_GET['blog'];
     
+        require_once('includes/connection.php');
+        $query = mysqli_query($connect, "SELECT * FROM blog WHERE id = '$_id'");
+        while ($row = mysqli_fetch_assoc($query)) {
+          $title = $row["title"];
+          $content = $row["content"];
+          $img = $row["img"];
+          $createddate = $row["createddate"];
+          $date = new DateTime($createddate);
+          $formattedDate = $date->format('D, d M, Y');
+          $pattern = '/\[\[(.*?)\]\]/'; // Regular expression to match [[whatever]]
+          $replacement = '<a href="$1">$1</a>'; // HTML anchor tag with href and content as 'whatever'
+          
+          $html_text = preg_replace($pattern, $replacement, $content);
+
+          ?>
+        
+      <div class="col-md-12 text-center py-5  d-flex flex-column align-items-center gap-3">
+      <h5 class=""><a href="" class="text-dark text-decoration-none fw-bold"><?= $title ?></a></h5>
+        <img class="img-fluid" src=" includes/<?= $img ?> "  alt=""
+          height="10px" width="400px">
+      </div>
+
+        <div class=" container text-center ">
+      <span><?= $formattedDate ?></span>
+      <div class="fs-5"><?= $html_text ?> </div>
+    </div>
+    <?php } ?>
   </section>
   <footer class="footer p-5 mt-5">
     <div class="container text-light">

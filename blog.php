@@ -10,36 +10,39 @@
 
   <section id="blog-section">
     <div class="container mt-5">
-      <div class="col-md-12 ">
         <h1 class="text-center mt-5 py-5">Latest Blog Posts</h1>
         <?php
         require_once('includes/connection.php');
         $query = mysqli_query($connect, "SELECT * FROM blog");
         while ($row = mysqli_fetch_assoc($query)) {
+          $id = $row["id"];
           $title = $row["title"];
           $content = $row["content"];
           $img = $row["img"];
           $createddate = $row["createddate"];
           $date = new DateTime($createddate);
           $formattedDate = $date->format('D, d M, Y');
-
+          $content = substr($content,0,50).'...';
 
           ?>
-          <img class="img-fluid" src=" includes/<?= $img ?> " alt="" height="10px" width="800px">
-        </div>
-      </div>
+        <div class="p-3">
+          <div class="d-flex justify-content-center">
+
+            <img class="img-fluid w-50 mx-auto text-center" src=" includes/<?= $img ?> " alt="" >
+          </div>
 
       <div class=" text-center mt-5 hw">
         <span>
           <?= $formattedDate ?>
         </span>
-        <h5 class=""><a href="" class="text-dark text-decoration-none fw-bold">
+        <h5 class=""><a href="blogsingle.php?blog=<?=$id?>" class="text-dark text-decoration-none fw-bold">
             <?= $title ?>
           </a></h5>
         <p class="fs-5">
           <?= $content ?>
         </p>
       </div>
+        </div>
 
     <?php } ?>
 
